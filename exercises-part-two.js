@@ -12,8 +12,7 @@
 */
 
 function describeCountry(country, population, capitalCity) {
-    const description = `${country} has ${population} million people and its capital is ${capitalCity}.`;
-    return description;
+    return `${country} has ${population} million people and its capital is ${capitalCity}.`;
 }
 
 const belgium = describeCountry("Belgium", 11, "Brussels");
@@ -158,6 +157,25 @@ console.log(neighbours);
 
 */
 
+const myCountry = {
+    country: "Belgium",
+    capital: "Brussels",
+    language: "Dutch/French/German",
+    population: 11,
+    neighbours: ["The Netherlands", "Germany", "France", "Luxembourg"],
+
+    describe: function () {
+        console.log(
+            `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}.`
+        );
+    },
+
+    checkIsland: function () {
+        this.isIsland = !Boolean(this.neighbours.length);
+    }
+}
+// console.log(myCountry);
+
 /* LECTURE: Dot vs. Bracket Notation
         1. Using the object from the previous assignment, log a string like this to the console:
            'Finland has 6 million finnish-speaking people, 3 neighbouring countries and a capital called Helsinki.'
@@ -165,6 +183,14 @@ console.log(neighbours);
         2. Increase the country's population by two million using dot notation, and then decrease it by two million using brackets notation.
 
 */
+
+console.log(`${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}.`);
+
+myCountry.population += 2;
+console.log(myCountry.population);
+
+myCountry["population"] -= 2;
+console.log(myCountry.population);
 
 /* LECTURE: Object Methods
         1. Add a method called 'describe' to the 'myCountry' object. This method will log a string to the console,
@@ -178,12 +204,20 @@ console.log(neighbours);
 
 */
 
+myCountry.describe();
+myCountry.checkIsland();
+console.log(myCountry);
+
 /* LECTURE: Iteration: The for Loop
         1. There are elections in your country! In a small town, there are only 50 voters. Use a for loop to simulate
            the 50 people voting, by logging a string like this to the console (for numbers 1 to 50):
            'Voter number 1 is currently voting'
 
 */
+
+for (let voterID = 1; voterID <= 50; voterID++) {
+    console.log(`Voter number ${voterID} is currently voting`);
+}
 
 /* LECTURE: Looping Arrays, Breaking and Continuing
         1. Let's bring back the 'populations' array from a previous assignment.
@@ -195,6 +229,20 @@ console.log(neighbours);
            manually in the previous assignment, and reflect on how much better this solution is.
 
 */
+
+// const populations = [11, 125, 47, 1380];
+const percentages2 = [];
+
+for (let i = 0; i < populations.length; i++) {
+    const percentage = percentageOfWorld2(populations[i]);
+    percentages2.push(percentage);
+}
+
+console.log(percentages2);
+
+for (let i = 0; i < percentages.length; i++) {
+    console.log(percentages[i] === percentages2[i]);
+}
 
 /* LECTURE: Looping Backwards and Loops in Loops
         1. Store this array of arrays into a variable called 'listOfNeighbours'
@@ -208,10 +256,35 @@ console.log(neighbours);
 
 */
 
+const listOfNeighbours = [
+    ['Canada', 'Mexico'],
+    ['Spain'],
+    ['Norway', 'Sweden', 'Russia']
+];
+
+for (let i = 0; i < listOfNeighbours.length; i++) {
+    for (let y = 0; y < listOfNeighbours[i].length; y++) {
+        console.log(`Neighbour: ${listOfNeighbours[i][y]}`);
+    }
+}
+
+
 /* LECTURE: The while Loop
         1. Recreate the challenge from the lecture 'Looping Arrays, Breaking and Continuing', but this time using
            a while loop (call the array 'percentages3')
 
         2. Reflect on what solution you like better for this task: the for loop or the while loop?
+           More a for loop kind of guy
 
 */
+
+const percentages3While = [];
+let i = 0;
+
+while (i < populations.length){
+    const percentage = percentageOfWorld2(populations[i]);
+    percentages3While.push(percentage);
+    i++;
+}
+
+console.log(percentages3While);
